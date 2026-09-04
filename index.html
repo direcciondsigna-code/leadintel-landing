@@ -1,0 +1,1042 @@
+<title>Lead Intelligence</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700&family=Inter:wght@300;400;500;600&display=swap">
+<style>
+:root {
+  --bg:         #080C18;
+  --surface:    #0F1629;
+  --surface2:   #141D35;
+  --border:     #1E2D4A;
+  --border2:    #263552;
+  --gold:       #C9A84C;
+  --gold-dim:   #A8863A;
+  --gold-glow:  rgba(201,168,76,0.15);
+  --gold-glow2: rgba(201,168,76,0.08);
+  --text:       #EFF4FF;
+  --text-2:     #8A9BBB;
+  --text-3:     #4E6080;
+  --green:      #34D399;
+  --red:        #F87171;
+  --blue:       #60A5FA;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg:         #F4F6FB;
+    --surface:    #FFFFFF;
+    --surface2:   #EEF1F9;
+    --border:     #DDE3F0;
+    --border2:    #C8D2E8;
+    --gold:       #A8863A;
+    --gold-dim:   #8A6D2F;
+    --gold-glow:  rgba(168,134,58,0.10);
+    --gold-glow2: rgba(168,134,58,0.05);
+    --text:       #0D1529;
+    --text-2:     #4E6080;
+    --text-3:     #8A9BBB;
+    --green:      #059669;
+    --red:        #DC2626;
+    --blue:       #2563EB;
+  }
+}
+:root[data-theme="dark"] {
+  --bg:         #080C18;
+  --surface:    #0F1629;
+  --surface2:   #141D35;
+  --border:     #1E2D4A;
+  --border2:    #263552;
+  --gold:       #C9A84C;
+  --gold-dim:   #A8863A;
+  --gold-glow:  rgba(201,168,76,0.15);
+  --gold-glow2: rgba(201,168,76,0.08);
+  --text:       #EFF4FF;
+  --text-2:     #8A9BBB;
+  --text-3:     #4E6080;
+  --green:      #34D399;
+  --red:        #F87171;
+  --blue:       #60A5FA;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; }
+
+/* ── NAV ── */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 5%;
+  height: 64px;
+  background: #0D1629;
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo { display: flex; align-items: center; gap: 10px; }
+.nav-logo svg { flex-shrink: 0; }
+.nav-logo-text { font-family: 'Inter', system-ui, sans-serif; font-size: 17px; letter-spacing: -0.3px; line-height: 1.1; }
+.nav-logo-text .logo-lead { font-weight: 700; color: #FFFFFF; display: block; }
+.nav-logo-text .logo-intel { font-weight: 400; font-size: 9.5px; letter-spacing: .22em; text-transform: uppercase; color: #FFFFFF; display: block; }
+.nav-links { display: flex; gap: 32px; }
+.nav-links a { font-size: 14px; color: #FFFFFF; font-weight: 500; transition: color .2s; }
+.nav-links a:hover { color: var(--gold); }
+.nav-actions { display: flex; align-items: center; gap: 12px; }
+.btn-ghost { font-size: 14px; color: #FFFFFF; font-weight: 500; padding: 8px 16px; border-radius: 8px; transition: color .2s; }
+.btn-ghost:hover { color: var(--gold); }
+.btn-primary {
+  font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600;
+  background: var(--gold); color: #000;
+  padding: 9px 20px; border-radius: 8px;
+  transition: background .2s, transform .15s;
+}
+.btn-primary:hover { background: var(--gold-dim); transform: translateY(-1px); }
+
+/* ── HERO ── */
+.hero {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center;
+  padding: 80px 5% 64px;
+  max-width: 1200px; margin: 0 auto;
+}
+.hero-eyebrow {
+  font-size: 12px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 20px;
+  display: flex; align-items: center; gap: 8px;
+}
+.hero-eyebrow::before { content: ''; display: block; width: 24px; height: 1px; background: var(--gold); }
+.hero h1 {
+  font-family: 'Playfair Display', Georgia, serif; font-size: clamp(36px, 5vw, 60px); font-weight: 900;
+  line-height: 1.05; letter-spacing: -0.5px; text-wrap: balance;
+  margin-bottom: 24px;
+}
+.hero h1 em {
+  font-style: normal;
+  background: linear-gradient(90deg, #4B6AE8 0%, #6B8FF0 60%, #C9A84C 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero-sub {
+  font-size: 17px; color: var(--text-2); line-height: 1.65;
+  max-width: 480px; margin-bottom: 36px;
+}
+.hero-actions { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.btn-xl {
+  font-family: 'Inter', sans-serif; font-size: 15px; font-weight: 600;
+  background: var(--gold); color: #000;
+  padding: 13px 28px; border-radius: 10px;
+  transition: background .2s, transform .15s, box-shadow .2s;
+  box-shadow: 0 0 0 0 var(--gold-glow);
+}
+.btn-xl:hover { background: var(--gold-dim); transform: translateY(-2px); box-shadow: 0 8px 32px var(--gold-glow); }
+.btn-xl-ghost {
+  font-size: 15px; font-weight: 500; color: var(--text-2);
+  padding: 13px 24px; border-radius: 10px; border: 1px solid var(--border2);
+  transition: border-color .2s, color .2s;
+}
+.btn-xl-ghost:hover { border-color: var(--gold); color: var(--gold); }
+.hero-trust { display: flex; align-items: center; gap: 8px; margin-top: 20px; }
+.hero-trust-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); }
+.hero-trust span { font-size: 13px; color: var(--text-3); }
+.hero-trust b { color: var(--text-2); font-weight: 500; }
+
+/* ── HERO CANVAS BACKGROUND ── */
+.hero-section {
+  position: relative;
+  overflow: hidden;
+}
+#hero-canvas {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+.hero-section > * { position: relative; z-index: 1; }
+.hero-gradient-overlay {
+  position: absolute; inset: 0; z-index: 0;
+  background: radial-gradient(ellipse 70% 80% at 60% 50%, rgba(75,106,232,0.08) 0%, transparent 70%),
+              radial-gradient(ellipse 40% 60% at 20% 80%, rgba(201,168,76,0.06) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+/* floating metric cards */
+.float-card {
+  position: absolute;
+  background: rgba(15,22,41,0.82);
+  border: 1px solid rgba(75,106,232,0.35);
+  backdrop-filter: blur(12px);
+  border-radius: 14px;
+  padding: 14px 18px;
+  z-index: 2;
+  pointer-events: none;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.4), 0 0 0 1px rgba(75,106,232,0.1);
+}
+.float-card-label { font-size: 10px; color: rgba(255,255,255,0.45); letter-spacing:.1em; text-transform:uppercase; margin-bottom:4px; }
+.float-card-value { font-family: 'Playfair Display', Georgia, serif; font-size: 26px; font-weight: 900; color:#fff; line-height:1; }
+.float-card-sub { font-size: 11px; margin-top:5px; }
+.float-card-trend { display:inline-flex; align-items:center; gap:3px; font-size:11px; font-weight:600; }
+
+/* ── DASHBOARD MOCKUP ── */
+.mockup-wrap {
+  position: relative;
+  border-radius: 16px; overflow: hidden;
+  border: 1px solid var(--border2);
+  background: var(--surface);
+  box-shadow: 0 32px 80px rgba(0,0,0,0.5), 0 0 0 1px var(--border);
+}
+.mockup-bar {
+  background: var(--surface2); padding: 10px 16px;
+  display: flex; align-items: center; gap: 8px;
+  border-bottom: 1px solid var(--border);
+}
+.mockup-dot { width: 10px; height: 10px; border-radius: 50%; }
+.mockup-url {
+  flex: 1; margin: 0 12px;
+  background: var(--bg); border-radius: 5px;
+  height: 22px; display: flex; align-items: center; padding: 0 10px;
+  font-size: 11px; color: var(--text-3);
+}
+.mockup-body { padding: 16px; }
+.mock-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+.mock-title { font-family: 'Playfair Display', Georgia, serif; font-size: 13px; font-weight: 700; }
+.mock-badge {
+  font-size: 10px; font-weight: 600; padding: 3px 8px; border-radius: 20px;
+  background: var(--gold-glow2); color: var(--gold); border: 1px solid var(--gold-glow);
+}
+.mock-leads { display: flex; flex-direction: column; gap: 8px; }
+.mock-lead {
+  display: flex; align-items: center; gap: 10px;
+  background: var(--bg); border-radius: 10px; padding: 10px 12px;
+  border: 1px solid var(--border);
+}
+.mock-avatar {
+  width: 30px; height: 30px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px; font-weight: 700; color: var(--bg); flex-shrink: 0;
+}
+.mock-info { flex: 1; min-width: 0; }
+.mock-name { font-size: 12px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.mock-dev { font-size: 10px; color: var(--text-3); }
+.mock-score-wrap { display: flex; flex-direction: column; align-items: flex-end; gap: 3px; }
+.mock-score { font-family: 'Playfair Display', Georgia, serif; font-size: 14px; font-weight: 800; }
+.mock-bar-bg { width: 50px; height: 4px; border-radius: 2px; background: var(--border); overflow: hidden; }
+.mock-bar-fill { height: 100%; border-radius: 2px; }
+.mock-status {
+  font-size: 9px; font-weight: 600; padding: 2px 7px; border-radius: 10px;
+  white-space: nowrap;
+}
+.mock-analysis {
+  margin-top: 12px; background: var(--bg); border-radius: 10px;
+  padding: 12px; border: 1px solid var(--border);
+}
+.mock-analysis-label { font-size: 10px; color: var(--text-3); margin-bottom: 6px; text-transform: uppercase; letter-spacing: .08em; }
+.mock-analysis-text { font-size: 11px; color: var(--text-2); line-height: 1.5; }
+.mock-analysis-text b { color: var(--gold); }
+.mock-chips { display: flex; gap: 5px; margin-top: 8px; flex-wrap: wrap; }
+.mock-chip {
+  font-size: 9px; font-weight: 600; padding: 2px 7px; border-radius: 10px;
+}
+
+/* ── STRIP ── */
+.strip {
+  padding: 28px 5%;
+  border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; gap: 40px; justify-content: center; flex-wrap: wrap;
+}
+.strip-label { font-size: 12px; color: var(--text-3); letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; }
+.strip-logos { display: flex; align-items: center; gap: 36px; flex-wrap: wrap; justify-content: center; }
+.strip-logo { font-family: 'Playfair Display', Georgia, serif; font-size: 14px; font-weight: 700; color: var(--text-3); letter-spacing: -0.3px; transition: color .2s; }
+.strip-logo:hover { color: var(--text-2); }
+
+/* ── SECTION ── */
+section { padding: 88px 5%; max-width: 1200px; margin: 0 auto; }
+.section-full { max-width: 100%; }
+.section-eyebrow {
+  font-size: 12px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 16px;
+}
+.section-title {
+  font-family: 'Playfair Display', Georgia, serif; font-size: clamp(28px, 4vw, 42px);
+  font-weight: 800; letter-spacing: -0.3px; line-height: 1.1; text-wrap: balance;
+  margin-bottom: 16px;
+}
+.section-sub { font-size: 17px; color: var(--text-2); max-width: 560px; line-height: 1.65; }
+
+/* ── FEATURES ── */
+.features-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+  margin-top: 56px;
+  border: 1px solid var(--border); border-radius: 16px; overflow: hidden;
+}
+.feature {
+  padding: 32px 28px;
+  background: var(--surface);
+  transition: background .2s;
+}
+.feature:hover { background: var(--surface2); }
+.feature-icon {
+  width: 40px; height: 40px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--gold-glow2); border: 1px solid var(--gold-glow);
+  font-size: 18px; margin-bottom: 20px;
+}
+.feature h3 { font-family: 'Playfair Display', Georgia, serif; font-size: 16px; font-weight: 700; margin-bottom: 10px; }
+.feature p { font-size: 14px; color: var(--text-2); line-height: 1.65; }
+
+/* ── STEPS ── */
+.steps-wrap { display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; margin-top: 56px; }
+.step {
+  padding: 32px 24px;
+  background: var(--surface); border-radius: 0;
+  position: relative;
+}
+.step-num {
+  font-family: 'Playfair Display', Georgia, serif; font-size: 42px; font-weight: 800;
+  color: var(--border2); line-height: 1; margin-bottom: 20px;
+}
+.step h3 { font-family: 'Playfair Display', Georgia, serif; font-size: 15px; font-weight: 700; margin-bottom: 10px; }
+.step p { font-size: 14px; color: var(--text-2); line-height: 1.65; }
+.steps-border { border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
+
+/* ── SECTORES ── */
+.sectores-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 56px; }
+.sector-card {
+  border-radius: 16px; padding: 40px 36px;
+  border: 1px solid var(--border2);
+  background: var(--surface);
+  position: relative; overflow: hidden;
+}
+.sector-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: var(--gold);
+}
+.sector-card.seguros::before { background: linear-gradient(90deg, var(--blue), #818CF8); }
+.sector-emoji { font-size: 28px; margin-bottom: 20px; }
+.sector-card h3 { font-family: 'Playfair Display', Georgia, serif; font-size: 22px; font-weight: 800; margin-bottom: 12px; }
+.sector-card p { font-size: 15px; color: var(--text-2); line-height: 1.65; margin-bottom: 24px; }
+.sector-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.sector-list li { font-size: 14px; color: var(--text-2); display: flex; align-items: center; gap: 8px; }
+.sector-list li::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
+.sector-card.seguros .sector-list li::before { background: var(--blue); }
+
+/* ── CTA BANNER ── */
+.cta-section {
+  margin: 0 5% 80px; max-width: 1200px; margin-left: auto; margin-right: auto;
+  background: var(--surface2);
+  border-radius: 20px; border: 1px solid var(--border2);
+  padding: 64px 56px;
+  display: grid; grid-template-columns: 1fr auto; gap: 48px; align-items: center;
+  position: relative; overflow: hidden;
+}
+.cta-section::after {
+  content: ''; position: absolute; right: -60px; top: -60px;
+  width: 300px; height: 300px; border-radius: 50%;
+  background: var(--gold-glow2);
+  filter: blur(60px); pointer-events: none;
+}
+.cta-section h2 {
+  font-family: 'Playfair Display', Georgia, serif; font-size: clamp(26px, 3.5vw, 40px);
+  font-weight: 800; letter-spacing: -0.3px; line-height: 1.1; text-wrap: balance;
+  margin-bottom: 12px;
+}
+.cta-section h2 em { font-style: normal; color: var(--gold); }
+.cta-section p { font-size: 16px; color: var(--text-2); line-height: 1.65; }
+.cta-right { display: flex; flex-direction: column; gap: 12px; align-items: flex-end; flex-shrink: 0; }
+.cta-note { font-size: 12px; color: var(--text-3); text-align: right; }
+.free-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--gold-glow); border: 1px solid var(--gold-glow);
+  color: var(--gold); padding: 5px 12px; border-radius: 20px;
+  font-size: 12px; font-weight: 600; letter-spacing: .04em;
+}
+
+/* ── FOOTER ── */
+footer {
+  border-top: 1px solid var(--border);
+  padding: 40px 5%;
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;
+}
+.footer-logo { display: flex; align-items: center; gap: 8px; }
+.footer-copy { font-size: 13px; color: var(--text-3); }
+.footer-links { display: flex; gap: 24px; }
+.footer-links a { font-size: 13px; color: var(--text-3); transition: color .2s; }
+.footer-links a:hover { color: var(--text-2); }
+
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; }
+  .features-grid { grid-template-columns: 1fr; }
+  .steps-wrap { grid-template-columns: 1fr 1fr; }
+  .sectores-grid { grid-template-columns: 1fr; }
+  .cta-section { grid-template-columns: 1fr; }
+  .cta-right { align-items: flex-start; }
+  .nav-links { display: none; }
+}
+@media (max-width: 600px) {
+  .steps-wrap { grid-template-columns: 1fr; }
+  nav { padding: 0 20px; }
+  section { padding: 64px 20px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+</style>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <svg width="40" height="36" viewBox="0 0 40 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="1"  y="24" width="7" height="11" rx="1.5" fill="#3A4FC0"/>
+      <rect x="11" y="17" width="7" height="18" rx="1.5" fill="#4B6AE8"/>
+      <rect x="21" y="9"  width="7" height="26" rx="1.5" fill="#6B8FF0"/>
+      <rect x="31" y="2"  width="7" height="33" rx="1.5" fill="#C9A84C"/>
+    </svg>
+    <span class="nav-logo-text"><span class="logo-lead">Lead</span><span class="logo-intel">Intelligence</span></span>
+  </a>
+  <div class="nav-links">
+    <a href="#caracteristicas">Características</a>
+    <a href="#como-funciona">Cómo funciona</a>
+    <a href="#sectores">Sectores</a>
+  </div>
+  <div class="nav-actions">
+    <a href="https://lead-intelligence-frontend-yp3h.onrender.com/login" class="btn-ghost">Iniciar sesión</a>
+    <a href="https://lead-intelligence-frontend-yp3h.onrender.com/registro" class="btn-primary">Empezar gratis</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero-section">
+<canvas id="hero-canvas"></canvas>
+<div class="hero-gradient-overlay"></div>
+
+<!-- Tarjetas flotantes animadas -->
+<div class="float-card" style="top:12%;right:6%;animation:floatA 6s ease-in-out infinite;">
+  <div class="float-card-label">Score promedio</div>
+  <div class="float-card-value" style="color:#C9A84C;" id="fc-score">78</div>
+  <div class="float-card-sub"><span class="float-card-trend" style="color:#34D399;">▲ +12 pts</span> <span style="color:rgba(255,255,255,.4);">vs mes anterior</span></div>
+</div>
+
+<div class="float-card" style="top:55%;right:4%;animation:floatB 7s ease-in-out infinite;">
+  <div class="float-card-label">Leads calificados hoy</div>
+  <div class="float-card-value" style="color:#6B8FF0;" id="fc-leads">24</div>
+  <div class="float-card-sub"><span class="float-card-trend" style="color:#34D399;">▲ +8</span> <span style="color:rgba(255,255,255,.4);">nuevos esta semana</span></div>
+</div>
+
+<div class="float-card" style="bottom:14%;left:5%;animation:floatC 8s ease-in-out infinite;">
+  <div class="float-card-label">Tasa de cierre</div>
+  <div class="float-card-value" style="color:#34D399;">34%</div>
+  <div class="float-card-sub"><span style="color:rgba(255,255,255,.4);">industria promedio: 18%</span></div>
+</div>
+
+<style>
+@keyframes floatA { 0%,100%{transform:translateY(0px)} 50%{transform:translateY(-10px)} }
+@keyframes floatB { 0%,100%{transform:translateY(-6px)} 50%{transform:translateY(6px)} }
+@keyframes floatC { 0%,100%{transform:translateY(4px)} 50%{transform:translateY(-8px)} }
+</style>
+
+<div style="max-width:1200px;margin:0 auto;padding:0 5%;">
+  <div class="hero" style="padding-left:0;padding-right:0;">
+    <div>
+      <div class="hero-eyebrow">CRM con Inteligencia Artificial</div>
+      <h1>Cada lead,<br><em>analizado.</em><br>Cada cierre,<br>más cerca.</h1>
+      <p class="hero-sub">Lead Intelligence califica tus prospectos con IA en segundos, guía a tus asesores con estrategias reales y centraliza todo el seguimiento en un solo lugar.</p>
+      <div class="hero-actions">
+        <a href="https://lead-intelligence-frontend-yp3h.onrender.com/registro" class="btn-xl">Empieza gratis — 5 análisis</a>
+        <a href="#como-funciona" class="btn-xl-ghost">Ver cómo funciona</a>
+      </div>
+      <div class="hero-trust">
+        <div class="hero-trust-dot"></div>
+        <span>Sin tarjeta de crédito &nbsp;·&nbsp; <b>5 análisis de IA incluidos</b> &nbsp;·&nbsp; Configuración en minutos</span>
+      </div>
+    </div>
+
+    <!-- Dashboard mockup -->
+    <div class="mockup-wrap">
+      <div class="mockup-bar">
+        <div class="mockup-dot" style="background:#F87171"></div>
+        <div class="mockup-dot" style="background:#FBBF24"></div>
+        <div class="mockup-dot" style="background:#34D399"></div>
+        <div class="mockup-url">lead-intelligence · Dashboard</div>
+      </div>
+      <div class="mockup-body">
+        <div class="mock-header">
+          <span class="mock-title">Leads activos hoy</span>
+          <span class="mock-badge">IA activa</span>
+        </div>
+        <div class="mock-leads">
+          <div class="mock-lead">
+            <div class="mock-avatar" style="background:#C9A84C">CM</div>
+            <div class="mock-info">
+              <div class="mock-name">Carlos Martínez</div>
+              <div class="mock-dev">Residencial Sense · Meta Ads</div>
+            </div>
+            <div class="mock-score-wrap">
+              <div class="mock-score" style="color:#C9A84C">91</div>
+              <div class="mock-bar-bg"><div class="mock-bar-fill" style="width:91%;background:#C9A84C"></div></div>
+            </div>
+            <div class="mock-status" style="background:rgba(52,211,153,.1);color:#34D399">Caliente</div>
+          </div>
+          <div class="mock-lead">
+            <div class="mock-avatar" style="background:#60A5FA">LO</div>
+            <div class="mock-info">
+              <div class="mock-name">Laura Ortega</div>
+              <div class="mock-dev">Torre Central · Facebook</div>
+            </div>
+            <div class="mock-score-wrap">
+              <div class="mock-score" style="color:#60A5FA">67</div>
+              <div class="mock-bar-bg"><div class="mock-bar-fill" style="width:67%;background:#60A5FA"></div></div>
+            </div>
+            <div class="mock-status" style="background:rgba(96,165,250,.1);color:#60A5FA">Tibio</div>
+          </div>
+          <div class="mock-lead">
+            <div class="mock-avatar" style="background:#A78BFA">AP</div>
+            <div class="mock-info">
+              <div class="mock-name">Andrés Pedraza</div>
+              <div class="mock-dev">Juventud 28 · Orgánico</div>
+            </div>
+            <div class="mock-score-wrap">
+              <div class="mock-score" style="color:#A78BFA">42</div>
+              <div class="mock-bar-bg"><div class="mock-bar-fill" style="width:42%;background:#A78BFA"></div></div>
+            </div>
+            <div class="mock-status" style="background:rgba(167,139,250,.1);color:#A78BFA">Frío</div>
+          </div>
+        </div>
+        <div class="mock-analysis">
+          <div class="mock-analysis-label">Análisis IA · Carlos Martínez</div>
+          <div class="mock-analysis-text">Presupuesto <b>confirmado $4.2M</b>. Decisor identificado. Urgencia alta — busca mudarse en <b>menos de 90 días</b>.</div>
+          <div class="mock-chips">
+            <div class="mock-chip" style="background:rgba(52,211,153,.1);color:#34D399">✓ Presupuesto confirmado</div>
+            <div class="mock-chip" style="background:rgba(52,211,153,.1);color:#34D399">✓ Decisor real</div>
+            <div class="mock-chip" style="background:rgba(201,168,76,.1);color:#C9A84C">⚡ Llamar hoy</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div><!-- /hero-section -->
+
+<script>
+(function(){
+  const canvas = document.getElementById('hero-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let W, H, nodes = [], mouse = {x:-999,y:-999};
+  const COLORS = ['#3A4FC0','#4B6AE8','#6B8FF0','#C9A84C','#34D399'];
+  const N = 55;
+
+  function resize(){
+    const rect = canvas.parentElement.getBoundingClientRect();
+    W = canvas.width  = rect.width;
+    H = canvas.height = rect.height || 600;
+  }
+
+  function mkNode(){
+    return {
+      x: Math.random()*W, y: Math.random()*H,
+      vx: (Math.random()-.5)*.4, vy: (Math.random()-.5)*.4,
+      r: Math.random()*2+1.5,
+      color: COLORS[Math.floor(Math.random()*COLORS.length)],
+      pulse: Math.random()*Math.PI*2
+    };
+  }
+
+  function init(){
+    resize();
+    nodes = Array.from({length:N}, mkNode);
+  }
+
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+
+    // Draw connections
+    for(let i=0;i<nodes.length;i++){
+      for(let j=i+1;j<nodes.length;j++){
+        const a=nodes[i], b=nodes[j];
+        const dx=a.x-b.x, dy=a.y-b.y;
+        const dist=Math.sqrt(dx*dx+dy*dy);
+        if(dist<140){
+          const alpha=(1-dist/140)*0.22;
+          ctx.beginPath();
+          ctx.moveTo(a.x,a.y);
+          ctx.lineTo(b.x,b.y);
+          ctx.strokeStyle=`rgba(75,106,232,${alpha})`;
+          ctx.lineWidth=0.8;
+          ctx.stroke();
+        }
+      }
+      // Mouse connections
+      const mx=mouse.x, my=mouse.y;
+      const dx=nodes[i].x-mx, dy=nodes[i].y-my;
+      const dist=Math.sqrt(dx*dx+dy*dy);
+      if(dist<180){
+        const alpha=(1-dist/180)*0.5;
+        ctx.beginPath();
+        ctx.moveTo(nodes[i].x,nodes[i].y);
+        ctx.lineTo(mx,my);
+        ctx.strokeStyle=`rgba(201,168,76,${alpha})`;
+        ctx.lineWidth=1;
+        ctx.stroke();
+      }
+    }
+
+    // Draw nodes
+    nodes.forEach(n=>{
+      n.pulse += 0.03;
+      const glow = Math.sin(n.pulse)*.5+.5;
+      ctx.beginPath();
+      ctx.arc(n.x,n.y,n.r*(1+glow*.3),0,Math.PI*2);
+      ctx.fillStyle=n.color;
+      ctx.globalAlpha=0.7+glow*.3;
+      ctx.fill();
+      ctx.globalAlpha=1;
+    });
+
+    // Animate score counter
+    const scoreEl = document.getElementById('fc-score');
+    const leadsEl = document.getElementById('fc-leads');
+    if(scoreEl && !scoreEl._done){
+      scoreEl._t = (scoreEl._t||0)+1;
+      if(scoreEl._t%90===0){
+        scoreEl.textContent = 70+Math.floor(Math.random()*20);
+      }
+    }
+    if(leadsEl && !leadsEl._done){
+      leadsEl._t = (leadsEl._t||0)+1;
+      if(leadsEl._t%120===0){
+        leadsEl.textContent = 18+Math.floor(Math.random()*15);
+      }
+    }
+  }
+
+  function move(){
+    nodes.forEach(n=>{
+      n.x+=n.vx; n.y+=n.vy;
+      if(n.x<0||n.x>W) n.vx*=-1;
+      if(n.y<0||n.y>H) n.vy*=-1;
+    });
+  }
+
+  function loop(){ draw(); move(); requestAnimationFrame(loop); }
+
+  canvas.parentElement.addEventListener('mousemove', e=>{
+    const r=canvas.getBoundingClientRect();
+    mouse.x=e.clientX-r.left;
+    mouse.y=e.clientY-r.top;
+  });
+  canvas.parentElement.addEventListener('mouseleave',()=>{ mouse.x=-999; mouse.y=-999; });
+
+  window.addEventListener('resize', ()=>{ resize(); });
+  init();
+  loop();
+})();
+</script>
+
+<!-- STRIP -->
+<div class="strip">
+  <span class="strip-label">Usado por equipos en</span>
+  <div class="strip-logos">
+    <span class="strip-logo">IKAL Realty Group</span>
+    <span class="strip-logo">GLC</span>
+    <span class="strip-logo">SHI Home</span>
+    <span class="strip-logo">Residencial Sense</span>
+    <span class="strip-logo">Grupo Líder</span>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section id="caracteristicas">
+  <div class="section-eyebrow">Características</div>
+  <h2 class="section-title">Todo lo que tu equipo<br>necesita para cerrar más.</h2>
+  <p class="section-sub">Desde el primer clic en tu anuncio hasta la firma del contrato, Lead Intelligence acompaña cada paso.</p>
+  <div class="features-grid">
+    <div class="feature">
+      <div class="feature-icon">🧠</div>
+      <h3>Análisis de IA al instante</h3>
+      <p>Cada lead recibe un score del 0 al 100, análisis de presupuesto, fortalezas, banderas rojas y una recomendación de acción en segundos.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">📊</div>
+      <h3>Dashboard en tiempo real</h3>
+      <p>Visualiza el estado de todos tus prospectos, filtra por temperatura, estado o asesor y toma decisiones con datos, no intuiciones.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">🎯</div>
+      <h3>Guía Discovery integrada</h3>
+      <p>Cuestionario guiado para calificar leads en llamada: presupuesto real, tiempo de decisión, motivación y decisor identificado.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">🔔</div>
+      <h3>Notificaciones push</h3>
+      <p>Los asesores reciben alertas instantáneas cuando se les asigna un nuevo lead. Sin perder ni un prospecto caliente por demora.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">💬</div>
+      <h3>Sofía, tu copiloto con IA</h3>
+      <p>Pregunta sobre cualquier lead por nombre y Sofía lee su ficha completa y te dice exactamente qué hacer, cuándo y cómo.</p>
+    </div>
+    <div class="feature">
+      <div class="feature-icon">📋</div>
+      <h3>CRM completo (SIMA)</h3>
+      <p>Cotizador de comisiones, fichas de clientes compradores y vendedores, estadísticas de ventas y budget comercial en un solo sistema.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CÓMO FUNCIONA -->
+<section id="como-funciona" style="background:var(--surface);max-width:100%;padding-top:88px;padding-bottom:100px;overflow:hidden;">
+  <div style="max-width:1200px;margin:0 auto;padding:0 5%;">
+    <div class="section-eyebrow">Proceso</div>
+    <h2 class="section-title">De anuncio a cierre,<br>sin fricción.</h2>
+
+    <!-- Pipeline canvas -->
+    <div style="position:relative;margin-top:64px;">
+
+      <div class="pipeline-steps">
+
+        <div class="pstep" data-step="0">
+          <div class="pstep-node">
+            <div class="pstep-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="19" y1="8" x2="19" y2="14"/><line x1="22" y1="11" x2="16" y2="11"/></svg>
+            </div>
+            <div class="pstep-ring"></div>
+          </div>
+          <div class="pstep-card">
+            <div class="pstep-num">01</div>
+            <h3>Entra el lead</h3>
+            <p>Desde Meta Ads, formularios web o carga manual. El sistema lo registra en segundos.</p>
+            <div class="pstep-tag" style="--tag-c:#4B6AE8">⚡ segundos</div>
+          </div>
+        </div>
+
+        <div class="pstep" data-step="1">
+          <div class="pstep-node">
+            <div class="pstep-icon" style="--icon-c:#8B5CF6">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+            </div>
+            <div class="pstep-ring" style="--ring-c:#8B5CF6"></div>
+            <!-- Score counter animado -->
+            <div class="pstep-score-bubble">
+              <span id="score-anim">0</span>
+            </div>
+          </div>
+          <div class="pstep-card">
+            <div class="pstep-num" style="color:#8B5CF6">02</div>
+            <h3>La IA lo analiza</h3>
+            <p>Score, temperatura, fortalezas, banderas rojas y recomendación de acción inmediata.</p>
+            <div class="pstep-tag" style="--tag-c:#8B5CF6">🧠 &lt; 1 minuto</div>
+          </div>
+        </div>
+
+        <div class="pstep" data-step="2">
+          <div class="pstep-node">
+            <div class="pstep-icon" style="--icon-c:#C9A84C">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.18h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.82a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+            </div>
+            <div class="pstep-ring" style="--ring-c:#C9A84C"></div>
+            <div class="pstep-notif-bubble">🔔</div>
+          </div>
+          <div class="pstep-card">
+            <div class="pstep-num" style="color:#C9A84C">03</div>
+            <h3>El asesor actúa</h3>
+            <p>Recibe notificación push, consulta a Sofía y registra cada contacto en el historial.</p>
+            <div class="pstep-tag" style="--tag-c:#C9A84C">📲 inmediato</div>
+          </div>
+        </div>
+
+        <div class="pstep" data-step="3">
+          <div class="pstep-node">
+            <div class="pstep-icon" style="--icon-c:#34D399">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div class="pstep-ring" style="--ring-c:#34D399"></div>
+          </div>
+          <div class="pstep-card">
+            <div class="pstep-num" style="color:#34D399">04</div>
+            <h3>Se cierra la venta</h3>
+            <p>Seguimiento completo, cotización generada y registro del cliente en el CRM.</p>
+            <div class="pstep-tag" style="--tag-c:#34D399">✅ mismo día</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+.pipeline-steps {
+  display: grid; grid-template-columns: repeat(4,1fr);
+  gap: 0; position: relative; z-index: 1;
+}
+.pstep {
+  display: flex; flex-direction: column; align-items: center;
+  opacity: 0; transform: translateY(28px);
+  animation: stepReveal .6s ease forwards;
+}
+.pstep:nth-child(1) { animation-delay: .1s; }
+.pstep:nth-child(2) { animation-delay: .28s; }
+.pstep:nth-child(3) { animation-delay: .46s; }
+.pstep:nth-child(4) { animation-delay: .64s; }
+@keyframes stepReveal {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.pstep-node {
+  position: relative; width: 64px; height: 64px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 28px;
+}
+.pstep-icon {
+  width: 48px; height: 48px; border-radius: 50%;
+  background: rgba(75,106,232,0.12);
+  border: 1.5px solid rgba(75,106,232,0.4);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--icon-c, #4B6AE8);
+  position: relative; z-index: 2;
+  transition: transform .3s, box-shadow .3s;
+}
+.pstep:hover .pstep-icon {
+  transform: scale(1.12);
+  box-shadow: 0 0 24px rgba(75,106,232,0.3);
+}
+.pstep-ring {
+  position: absolute; inset: 0;
+  border-radius: 50%;
+  border: 1.5px solid var(--ring-c, #4B6AE8);
+  opacity: 0.3;
+  animation: ringPulse 2.5s ease-in-out infinite;
+}
+@keyframes ringPulse {
+  0%,100% { transform: scale(1); opacity: 0.3; }
+  50%      { transform: scale(1.45); opacity: 0; }
+}
+.pstep:nth-child(1) .pstep-ring { animation-delay: 0s; }
+.pstep:nth-child(2) .pstep-ring { animation-delay: .6s; }
+.pstep:nth-child(3) .pstep-ring { animation-delay: 1.2s; }
+.pstep:nth-child(4) .pstep-ring { animation-delay: 1.8s; }
+
+.pstep-score-bubble {
+  position: absolute; top: -8px; right: -8px;
+  background: #8B5CF6; color: #fff;
+  font-family: 'Playfair Display', serif; font-weight: 900; font-size: 13px;
+  width: 28px; height: 28px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 2px 10px rgba(139,92,246,.5);
+  z-index: 3;
+}
+.pstep-notif-bubble {
+  position: absolute; top: -6px; right: -10px;
+  font-size: 16px; z-index: 3;
+  animation: notifBounce 1.8s ease-in-out infinite;
+}
+@keyframes notifBounce {
+  0%,100% { transform: translateY(0) rotate(-10deg); }
+  50%     { transform: translateY(-5px) rotate(10deg); }
+}
+
+.pstep-card {
+  background: var(--bg); border: 1px solid var(--border);
+  border-radius: 16px; padding: 24px 20px;
+  width: 100%; text-align: left;
+  transition: border-color .3s, transform .3s, box-shadow .3s;
+}
+.pstep:hover .pstep-card {
+  border-color: var(--border2);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.25);
+}
+.pstep-num {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 36px; font-weight: 900;
+  color: #4B6AE8; line-height: 1; margin-bottom: 14px;
+  opacity: 0.9;
+}
+.pstep-card h3 {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 15px; font-weight: 700; margin-bottom: 10px;
+}
+.pstep-card p { font-size: 14px; color: var(--text-2); line-height: 1.65; margin-bottom: 14px; }
+.pstep-tag {
+  display: inline-block; font-size: 11px; font-weight: 600;
+  color: var(--tag-c, #4B6AE8);
+  background: rgba(75,106,232,0.08);
+  border: 1px solid currentColor; border-radius: 20px;
+  padding: 3px 10px; opacity: 0.85;
+}
+@media (max-width:900px) {
+  .pipeline-steps { grid-template-columns: 1fr 1fr; gap: 24px; }
+}
+@media (max-width:600px) {
+  .pipeline-steps { grid-template-columns: 1fr; gap: 20px; }
+}
+</style>
+
+<script>
+// Pipeline canvas — dots flowing between step nodes
+(function(){
+  const canvas = document.getElementById('pipeline-canvas');
+  if(!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const dots = [];
+  let W, H, nodePositions = [];
+
+  function resize(){
+    const wrap = canvas.parentElement;
+    W = canvas.width = wrap.offsetWidth;
+    H = canvas.height = 60;
+    // Recalculate node centers from pipeline steps
+    const steps = document.querySelectorAll('.pstep');
+    nodePositions = [];
+    steps.forEach(s=>{
+      const r = s.getBoundingClientRect();
+      const pr = wrap.getBoundingClientRect();
+      nodePositions.push(r.left - pr.left + r.width/2);
+    });
+  }
+
+  function spawnDot(){
+    if(nodePositions.length < 2) return;
+    const seg = Math.floor(Math.random()*(nodePositions.length-1));
+    const colors = ['#4B6AE8','#8B5CF6','#C9A84C','#34D399'];
+    dots.push({ seg, t: 0, speed: .004 + Math.random()*.006, color: colors[seg], size: 3+Math.random()*2 });
+  }
+
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    const cy = H/2;
+
+    // Draw track lines
+    if(nodePositions.length >= 2){
+      for(let i=0;i<nodePositions.length-1;i++){
+        ctx.beginPath();
+        ctx.moveTo(nodePositions[i], cy);
+        ctx.lineTo(nodePositions[i+1], cy);
+        ctx.strokeStyle = 'rgba(75,106,232,0.15)';
+        ctx.lineWidth = 2;
+        ctx.setLineDash([6,6]);
+        ctx.stroke();
+        ctx.setLineDash([]);
+      }
+    }
+
+    // Draw dots
+    dots.forEach((d,i)=>{
+      if(nodePositions.length < 2) return;
+      d.t += d.speed;
+      if(d.t >= 1){ dots.splice(i,1); return; }
+      const x0 = nodePositions[d.seg];
+      const x1 = nodePositions[d.seg+1];
+      const x = x0 + (x1-x0)*d.t;
+      ctx.beginPath();
+      ctx.arc(x, cy, d.size, 0, Math.PI*2);
+      ctx.fillStyle = d.color;
+      ctx.shadowColor = d.color;
+      ctx.shadowBlur = 8;
+      ctx.fill();
+      ctx.shadowBlur = 0;
+    });
+  }
+
+  let frame = 0;
+  function loop(){
+    frame++;
+    if(frame % 28 === 0) spawnDot();
+    draw();
+    requestAnimationFrame(loop);
+  }
+
+  // Scroll reveal for steps
+  const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        const idx = parseInt(e.target.dataset.step)||0;
+        setTimeout(()=> e.target.classList.add('visible'), idx*160);
+        // Score counter animation on step 02
+        if(idx===1){
+          let v=0, target=87;
+          const el=document.getElementById('score-anim');
+          const t=setInterval(()=>{ v+=3; if(v>=target){v=target;clearInterval(t);} el.textContent=v; },25);
+        }
+      }
+    });
+  }, {threshold:0.2});
+  document.querySelectorAll('.pstep').forEach(s=>observer.observe(s));
+
+  window.addEventListener('resize', ()=>{ resize(); });
+  setTimeout(()=>{ resize(); loop(); }, 400);
+})();
+</script>
+
+<!-- SECTORES -->
+<section id="sectores">
+  <div class="section-eyebrow">Sectores</div>
+  <h2 class="section-title">Diseñado para dos industrias,<br>especializado en ambas.</h2>
+  <div class="sectores-grid">
+    <div class="sector-card">
+      <div class="sector-emoji">🏙️</div>
+      <h3>Sector Inmobiliario</h3>
+      <p>Para desarrolladoras, inmobiliarias y equipos de ventas que manejan prospectos de residencial, comercial o turístico.</p>
+      <ul class="sector-list">
+        <li>Análisis IA con score por perfil de comprador</li>
+        <li>Guía Discovery para calificar en llamada</li>
+        <li>Cotizador de comisiones integrado</li>
+        <li>Estadísticas de ventas y budget comercial</li>
+        <li>Llamadas automáticas con IA (Vapi)</li>
+      </ul>
+    </div>
+    <div class="sector-card seguros">
+      <div class="sector-emoji">🛡️</div>
+      <h3>Sector Seguros</h3>
+      <p>Para agencias y asesores de seguros que necesitan gestionar pólizas, renovaciones y seguimiento de clientes.</p>
+      <ul class="sector-list" style="--gold:var(--blue)">
+        <li>Registro de pólizas al cierre (vida, auto, GMM)</li>
+        <li>Alertas de renovación 30 días antes del vencimiento</li>
+        <li>Recordatorios automáticos por push, email y WhatsApp</li>
+        <li>Sofía especializada en estrategias de seguros</li>
+        <li>Dashboard de renovaciones próximas</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<div style="padding:0 5%;max-width:1200px;margin:0 auto 80px;">
+  <div class="cta-section">
+    <div>
+      <div class="free-badge" style="margin-bottom:20px;">🎁 Prueba gratuita</div>
+      <h2>Empieza hoy con<br><em>5 análisis de IA gratis.</em></h2>
+      <p style="margin-top:12px;">Sin tarjeta de crédito. Sin compromisos. Configura tu cuenta en minutos y descubre el score de tus primeros 5 leads con inteligencia artificial.</p>
+    </div>
+    <div class="cta-right">
+      <a href="https://lead-intelligence-frontend-yp3h.onrender.com/registro" class="btn-xl" style="white-space:nowrap;">
+        Crear cuenta gratis
+      </a>
+      <span class="cta-note">5 análisis de IA incluidos · Sin tarjeta</span>
+      <a href="https://lead-intelligence-frontend-yp3h.onrender.com/login" style="font-size:13px;color:var(--text-3);">¿Ya tienes cuenta? Inicia sesión →</a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+    <svg width="28" height="24" viewBox="0 0 40 36" fill="none">
+      <rect x="1"  y="24" width="7" height="11" rx="1.5" fill="#3A4FC0"/>
+      <rect x="11" y="17" width="7" height="18" rx="1.5" fill="#4B6AE8"/>
+      <rect x="21" y="9"  width="7" height="26" rx="1.5" fill="#6B8FF0"/>
+      <rect x="31" y="2"  width="7" height="33" rx="1.5" fill="#C9A84C"/>
+    </svg>
+    <span style="font-family:'Syne',sans-serif;font-weight:700;font-size:15px;">Lead Intelligence</span>
+  </div>
+  <span class="footer-copy">© 2026 Lead Intelligence · Sistema de análisis de prospectos</span>
+  <div class="footer-links">
+    <a href="#">Aviso de Privacidad</a>
+    <a href="#">Términos de Uso</a>
+    <a href="https://lead-intelligence-frontend-yp3h.onrender.com/login">Iniciar sesión</a>
+  </div>
+</footer>
